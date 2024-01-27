@@ -5,7 +5,7 @@ export const updateData = async data => {
     console.log(data);
     const res = await axios({
       method: 'PATCH',
-      url: 'http://127.0.0.1:7000/api/v1/users/updateMe',
+      url: '/api/v1/users/updateMe',
       data: data
     });
     if (res.status === 200) {

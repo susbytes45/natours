@@ -23,12 +23,12 @@ moongose
 const app = require('./app');
 
 // console.log(app.get('env'));
-console.log(process.env.NODE_ENV);
+// console.log(process.env.NODE_ENV);
 const port = 7000;
 const server = app.listen(port, () => {
   console.log(`server running on ${port}`);
 });
-console.log('hello');
+// console.log('hello');
 process.on('unhandledRejection', err => {
   console.log(err.name, err.message);
   server.close(() => {

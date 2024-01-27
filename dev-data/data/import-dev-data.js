@@ -43,7 +43,7 @@ const deleteData = async () => {
     await User.deleteMany();
     await Review.deleteMany();
 
-    console.log('data sucessfully deleated');
+    // console.log('data sucessfully deleated');
   } catch (err) {
     console.log(err);
   }

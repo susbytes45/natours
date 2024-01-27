@@ -19,7 +19,7 @@ exports.signup = async (req, res, next) => {
       expiresIn: process.env.JWT_EXPIRES_IN
     });
     const url = `${req.protocol}://${req.get('host')}/me`;
-    console.log(url, newUser.name);
+    // console.log(url, newUser.name);
     await new Email(newUser, url).sendWelcome();
     newUser.password = undefined;
     res.cookie('jwt', token, {
@@ -53,7 +53,7 @@ exports.login = async (req, res, next) => {
     }
     // check if usere exsist and password is correct
     const newuser = await User.findOne({ email: email }).select('+password');
-    console.log(newuser);
+    // console.log(newuser);
     if (!newuser) {
       return next(
         new appError(
@@ -61,10 +61,10 @@ exports.login = async (req, res, next) => {
         )
       );
     }
-    console.log(password, newuser.name);
+    // console.log(password, newuser.name);
     const match = await bcrypt.compare(password, newuser.password);
     if (!match) {
-      console.log('not correct password');
+      // console.log('not correct password');
       return next(
         new appError(
           'the password is invalid please enter the correct password',
@@ -104,8 +104,8 @@ exports.protect = async (req, res, next) => {
     } else if (req.cookies.jwt) {
       token = req.cookies.jwt;
     }
-    console.log('from protect');
-    console.log(token);
+    // console.log('from protect');
+    // console.log(token);
     // check the jwt and retrive the payload
     if (!token) {
       next(new appError('you are not logged in please login first', 401));
@@ -151,7 +151,7 @@ exports.forgotPassword = async (req, res, next) => {
 
   // check user with that email exsist or not
   const user = await User.findOne({ email: req.body.email });
-  console.log(user);
+  // console.log(user);
   if (!user) {
     return next(new appError('no user with this email exsist', 401));
   }
@@ -254,17 +254,17 @@ exports.updatePassword = async (req, res, next) => {
 exports.isLoggedIn = async (req, res, next) => {
   // if json token is there or not
   try {
-    console.log('hello from loged in ');
+    // console.log('hello from loged in ');
     if (req.cookies.jwt) {
       const jwtverifypromise = util.promisify(jwt.verify);
       const decoded = await jwtverifypromise(
         req.cookies.jwt,
         process.env.JWT_SECRET
       );
-      console.log(decoded);
+      // console.log(decoded);
       // check the user is there or not
       const freshuser = await User.findById(decoded.id);
-      console.log(freshuser);
+      // console.log(freshuser);
       if (!freshuser) {
         const err = new appError(
           'please enter valid email id and password',
@@ -278,7 +278,7 @@ exports.isLoggedIn = async (req, res, next) => {
         return next();
       }
       res.locals.user = freshuser;
-      console.log('from middle');
+      // console.log('from middle');
       return next();
       // freshuser.fun();/
     }

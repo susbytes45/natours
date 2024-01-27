@@ -9,6 +9,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const tourRouter = require('./routes/tourroutes.js');
 const userRouter = require('./routes/userroutes.js');
@@ -98,6 +99,7 @@ app.use((req, res, next) => {
   // console.log(req.cookies);
   next();
 });
+app.use(compression());
 app.use((req, res, next) => {
   req.reqquestTime = new Date().toISOString();
   next();

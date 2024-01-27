@@ -4,7 +4,7 @@ const User = require('./../model/usermodel');
 const Book = require('./../model/bookingmodel');
 exports.getOverview = async (req, res, next) => {
   try {
-    console.log('get overview from ');
+    // console.log('get overview from ');
     const tours = await Tour.find();
     res.status(200).render('overviewpug', {
       title: 'All tours',
@@ -15,7 +15,7 @@ exports.getOverview = async (req, res, next) => {
   }
 };
 exports.getTour = async (req, res, next) => {
-  console.log('from get tour');
+  // console.log('from get tour');
   try {
     const tour = await Tour.findOne({ slug: req.params.slug }).populate({
       path: 'reviews'

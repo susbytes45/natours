@@ -16,16 +16,16 @@ import { showAlert } from './alert';
 // console.log('hello');
 export const login = async (email, password) => {
   try {
-    console.log('from login');
+    // console.log('from login');
     const res = await axios({
       method: 'POST',
-      url: 'http://127.0.0.1:7000/api/v1/users/login',
+      url: '/api/v1/users/login',
       data: {
         email,
         password
       }
     });
-    console.log(res.data, res);
+    // console.log(res.data, res);
     // console.log('hello  from login.js');
     if (res.status === 200) {
       showAlert('success', ' login sucessfully');
@@ -45,7 +45,7 @@ export async function logout() {
     console.log('from logout');
     const res = await axios({
       method: 'GET',
-      url: 'http://127.0.0.1:7000/api/v1/users/logout'
+      url: '/api/v1/users/logout'
     });
     if (res.data.status == 'sucess') {
       location.reload(true);

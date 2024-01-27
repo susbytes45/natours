@@ -7,9 +7,7 @@ export const bookTour = async tourId => {
     'pk_test_51OcPFjSCSdt3ZLF2OUp2UB2aGyjPwsY3qahZXVZQRa0cL8VzFk9b90JvlFeidORiwQCAURamcoLJbIWbJpsk7Tcu00QQMpT2Gg'
   );
   try {
-    const session = await axios(
-      `http://127.0.0.1:7000/api/v1/bookings/checkout-session/${tourId}`
-    );
+    const session = await axios(`/api/v1/bookings/checkout-session/${tourId}`);
     console.log(`${session} from stripe`);
     // craete checkout form  + chanre credit card
     // await stripe.redirectTOCheckout({

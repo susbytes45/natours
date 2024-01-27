@@ -24,7 +24,7 @@ const app = require('./app');
 
 // console.log(app.get('env'));
 // console.log(process.env.NODE_ENV);
-const port = 7000;
+const port = process.env.PORT;
 const server = app.listen(port, () => {
   console.log(`server running on ${port}`);
 });

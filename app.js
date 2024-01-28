@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const cors = require('cors');
 // const { axiosfunn } = require('./delete.js');
 const appError = require('./appError.js');
 const morgan = require('morgan');
@@ -21,6 +22,8 @@ const errorHandler = require('./controllers/errorController.js');
 // console.log(process.env.NODE_ENV);
 
 const app = express();
+app.use(cors());
+app.options('*', cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));

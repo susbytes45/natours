@@ -2,7 +2,8 @@
 
 console.log('hello from parser');
 const formel = document.querySelector('.form--login');
-import { login, logout } from './login';
+const form_signup = document.querySelector('.form-signup');
+import { login, logout, signup } from './login';
 import { updateData, updatePassword } from './updateSettings';
 import { bookTour } from './strip';
 // values
@@ -14,6 +15,19 @@ const changeUserPassword = document.querySelector('.form-user-settings');
 
 console.log(userDataForm);
 const logoutBtn = document.querySelector('.nav__el--logout');
+if (form_signup) {
+  form_signup.addEventListener('submit', el => {
+    el.preventDefault();
+    // const form = new FormData();
+    const name = document.querySelector('#name').value;
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+    const passwordConfirm = document.querySelector('#passwordConfirm').value;
+    // console.log(form);
+    // console.log(name, email, password, passwordConfirm);
+    signup(name, email, password, passwordConfirm);
+  });
+}
 if (formel) {
   formel.addEventListener('submit', el => {
     el.preventDefault();

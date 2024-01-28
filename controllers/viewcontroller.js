@@ -43,6 +43,11 @@ exports.loginview = (req, res, next) => {
     title: 'Log into your account'
   });
 };
+exports.signupview = (req, res, next) => {
+  res.status(200).render('signup', {
+    title: 'signup into the account'
+  });
+};
 exports.getAccount = (req, res) => {
   res.status(200).render('account', {
     // title: 'Your Account'

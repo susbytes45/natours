@@ -5,7 +5,8 @@ const {
   loginview,
   getAccount,
   updateUserData,
-  getMyTour
+  getMyTour,
+  signupview
 } = require('./../controllers/viewcontroller');
 const { isLoggedIn, protect } = require('./../controllers/authcontroller');
 const { createBookingCheckout } = require('./../controllers/bookingcontroller');
@@ -16,6 +17,7 @@ const router = express.Router();
 router.get('/', createBookingCheckout, isLoggedIn, getOverview);
 // router.use();
 router.get('/login', isLoggedIn, loginview);
+router.get('/signup', isLoggedIn, signupview);
 // router.get('/logout',)
 // router.get('/tour', getTour);
 router.get('/tour/:slug', isLoggedIn, getTour);

@@ -40,6 +40,30 @@ export const login = async (email, password) => {
     showAlert('error', err.response.data.message);
   }
 };
+export const signup = async (name, email, password, passwordConfirm) => {
+  try {
+    console.log(email, passwordConfirm, name, password);
+    const res = await axios({
+      url: '/api/v1/users/signup',
+      method: 'POST',
+      data: {
+        email,
+        name,
+        password,
+        passwordConfirm
+      }
+    });
+    if (res.status === 200) {
+      showAlert('success', 'signup sucessfully');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
+  } catch (err) {
+    console.log(err.response.data.message);
+    showAlert('error', err.response.data.message);
+  }
+};
 export async function logout() {
   try {
     console.log('from logout');

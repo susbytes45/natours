@@ -2,7 +2,7 @@ const fs = require('fs');
 const Tour = require('./../model/tourmodel');
 const multer = require('multer');
 const appError = require('../appError');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const multerstorage = multer.memoryStorage();
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
@@ -19,32 +19,32 @@ exports.uplaodTourImages = upload.fields([
   { name: 'imageCover', maxCount: 1 },
   { name: 'images', maxCount: 3 }
 ]);
-exports.resizeTourImages = async (req, res, next) => {
-  console.log(req.files);
-  if (!req.files.imageCover || !req.files.images) {
-    return next();
-  }
-  const imageCoverFilename = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
-  // 1)cover image
-  await sharp(req.files.imageCover[0].buffer)
-    .resize(2000, 1333)
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/tours/${imageCoverFilename}`);
-  req.body.imageCover = imageCoverFilename;
-  req.body.images = [];
-  await Promise.all(
-    req.files.images.map(async (file, i) => {
-      const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
-      await sharp(file.buffer)
-        .resize(2000, 1333)
-        .jpeg({ quality: 90 })
-        .toFile(`public/img/tours/${filename}`);
-      req.body.images.push(filename);
-    })
-  );
+// exports.resizeTourImages = async (req, res, next) => {
+//   console.log(req.files);
+//   if (!req.files.imageCover || !req.files.images) {
+//     return next();
+//   }
+//   const imageCoverFilename = `tour-${req.params.id}-${Date.now()}-cover.jpeg`;
+//   // 1)cover image
+//   await sharp(req.files.imageCover[0].buffer)
+//     .resize(2000, 1333)
+//     .jpeg({ quality: 90 })
+//     .toFile(`public/img/tours/${imageCoverFilename}`);
+//   req.body.imageCover = imageCoverFilename;
+//   req.body.images = [];
+//   await Promise.all(
+//     req.files.images.map(async (file, i) => {
+//       const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+//       await sharp(file.buffer)
+//         .resize(2000, 1333)
+//         .jpeg({ quality: 90 })
+//         .toFile(`public/img/tours/${filename}`);
+//       req.body.images.push(filename);
+//     })
+//   );
 
-  next();
-};
+//   next();
+// };
 class APIfeatures {
   constructor(query, queryString) {
     this.query = query;

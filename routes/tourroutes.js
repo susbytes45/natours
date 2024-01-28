@@ -38,7 +38,7 @@ router
     restrict('admin', 'lead-guide'),
     checkbdy,
     uplaodTourImages,
-    resizeTourImages,
+
     updateTour
   )
   .delete(protect, restrict('admin'), deleteTour);

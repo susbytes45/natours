@@ -1,7 +1,7 @@
 const appError = require('../appError');
 const User = require('./../model/usermodel');
 const multer = require('multer');
-const sharp = require('sharp');
+// const sharp = require('sharp');
 // const multerStorage = multer.diskStorage({
 //   destination: (req, file, cb) => {
 //     cb(null, 'public/img/users');
@@ -31,17 +31,17 @@ const filterObj = (filterObject, ...allowedfields) => {
   return newObj;
 };
 exports.updateUserPhoto = upload.single('photo');
-exports.resizeUserPhoto = async (req, res, next) => {
-  if (!req.file) {
-    return next();
-  }
-  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
-  await sharp(file.buffer)
-    .resize(500, 500)
-    .jpeg({ quality: 90 })
-    .toFile(`public/img/users/${req.file.filename}`);
-  next();
-};
+// exports.resizeUserPhoto = async (req, res, next) => {
+//   if (!req.file) {
+//     return next();
+//   }
+//   req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+//   await sharp(file.buffer)
+//     .resize(500, 500)
+//     .jpeg({ quality: 90 })
+//     .toFile(`public/img/users/${req.file.filename}`);
+//   next();
+// };
 exports.createUser = async (req, res, next) => {
   try {
     const newUser = await User.create({

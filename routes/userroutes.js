@@ -33,7 +33,7 @@ router.post('/forgotPassword', forgotPassword);
 router.patch('/resetPassword/:resetToken', resetPassword);
 router.use(protect);
 router.patch('/updatePassword', protect, updatePassword);
-router.patch('/updateMe', protect, updateUserPhoto, resizeUserPhoto, updateMe);
+router.patch('/updateMe', protect, updateMe);
 router.patch('/deleteMe', protect, deleteMe);
 router.get('/me', protect, getMe, getUser);
 router.use(restrict('admin'));

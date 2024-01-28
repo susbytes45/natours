@@ -1,0 +1,23 @@
+extends base
+block content
+    
+    .wrapper
+        h2 Registration
+        form.form-signup
+            .input-box
+                input#name(type='text' placeholder='Enter your name' required='')
+            .input-box
+                input#email(type='text' placeholder='Enter your email' required='')
+            .input-box
+                input#password(type='password' placeholder='Create password' required='')
+            .input-box
+                input#passwordConfirm(type='password' placeholder='Confirm password' required='')
+            .policy
+                input(type='checkbox')
+                h3 I accept all terms &amp; condition
+            button.btn.btn--green  Register 
+                
+            .text
+                h3
+                    | Already have an account? 
+                    a(href='/login') Login now
